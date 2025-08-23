@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../core/app_colors.dart';
 import '../../../../../../core/app_data.dart';
+import '../../../../../../core/app_paths.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key, required this.dateNow});
@@ -15,7 +16,7 @@ class Header extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(Icons.person, color: AppColors.mainColor),
+            Image.asset(AppPaths.menuIcon, width: 40,height: 40,),
             Row(
               children: [
                 Column(
