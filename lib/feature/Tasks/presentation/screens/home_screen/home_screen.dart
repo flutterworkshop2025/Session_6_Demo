@@ -4,8 +4,11 @@ import 'package:intl/intl.dart';
 import '../../../../../core/app_colors.dart';
 import '../../../../../core/app_data.dart';
 import '../../../../../core/dummy_data.dart';
+import '../../../data/model/Priority.dart';
 import '../../../data/model/Task.dart';
 import 'widgets/Header.dart';
+import 'widgets/add_task_widgets/add_task_dialog.dart';
+import 'widgets/tasks_list.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -17,79 +20,32 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) {
+              final _titleController = TextEditingController();
+              final _descController = TextEditingController();
+              DateTime? selectedDateTime;
+              Priority? selectedPriority;
+              return AddTaskDialog(
+                titleController: _titleController,
+                descController: _descController,
+                selectedDateTime: selectedDateTime,
+                selectedPriority: selectedPriority,
+              );
+            },
+          );
+        },
+        backgroundColor: AppColors.mainColor,
+        child: Icon(Icons.add, color: Colors.white),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 15),
           child: Column(
-            children: [
-              Header(dateNow: dateNow),
-
-              Text(
-                "Tasks",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 30,
-                  fontWeight: FontWeight.w600,
-                ),
-                overflow: TextOverflow.ellipsis,
-              ),
-
-              Expanded(
-                child: ListView.builder(
-                  itemCount: tasks.length,
-                  itemBuilder: (context, index) {
-                    Task task = tasks[index];
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8.0,
-                        vertical: 5,
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: task.priority.color,
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.lightGrey,
-                              blurRadius: 5,
-                              offset: Offset(1, 2),
-                            ),
-                          ],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    task.title,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    task.description,
-                                    style: TextStyle(
-                                      color: AppColors.lightGrey,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ],
+            children: [Header(dateNow: dateNow), TasksList(tasks: tasks)],
           ),
         ),
       ),
