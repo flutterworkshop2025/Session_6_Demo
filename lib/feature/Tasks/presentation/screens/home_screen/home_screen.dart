@@ -31,6 +31,7 @@ class HomeScreen extends StatelessWidget {
                   fontSize: 30,
                   fontWeight: FontWeight.w600,
                 ),
+                overflow: TextOverflow.ellipsis,
               ),
 
               Expanded(
