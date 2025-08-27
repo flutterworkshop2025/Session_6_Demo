@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../core/app_colors.dart';
-import '../../../../../core/app_data.dart';
 import '../../../../../core/dummy_data.dart';
 import '../../../data/model/Priority.dart';
 import '../../../data/model/Task.dart';

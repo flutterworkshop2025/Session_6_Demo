@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import 'core/widgets/navigation/bottom_navigator.dart';
 import 'feature/Tasks/data/model/Task.dart';
 import 'feature/Tasks/presentation/screens/home_screen/home_screen.dart';
 import 'feature/Tasks/view_model/bloc/task_bloc.dart';
+import 'feature/quote/view/screen/qoute_screen/qoute_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +43,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(scaffoldBackgroundColor: Colors.white),
           title: 'Flutter Demo',
-          home: HomeScreen(),
+          home: QouteScreen(),
         ),
       ),
     );
