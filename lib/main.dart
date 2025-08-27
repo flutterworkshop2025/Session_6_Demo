@@ -7,7 +7,11 @@ import 'core/widgets/navigation/bottom_navigator.dart';
 import 'feature/Tasks/data/model/Task.dart';
 import 'feature/Tasks/presentation/screens/home_screen/home_screen.dart';
 import 'feature/Tasks/view_model/bloc/task_bloc.dart';
+import 'feature/quote/data/repository/qoute_repository.dart';
+import 'feature/quote/data/service/qoute_service.dart' show QouteService;
 import 'feature/quote/view/screen/qoute_screen/qoute_screen.dart';
+import 'feature/quote/view_model/quote_bloc/quote_cubit.dart';
+import 'utils/api/dio_consumer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,10 +39,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider.value(
       value: taskRepo,
-      child: BlocProvider(
-        create:
-            (context) =>
-                TasksBloc(RepositoryProvider.of<TaskRepository>(context)),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create:
+                (context) =>
+                    TasksBloc(RepositoryProvider.of<TaskRepository>(context)),
+          ),
+          BlocProvider<QuoteCubit>(
+            create: (BuildContext context) => QuoteCubit(QouteRepository(QouteService(apiConsumer: DioConsumer() )))
+          )
+        ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(scaffoldBackgroundColor: Colors.white),
