@@ -7,8 +7,8 @@ class Qoute {
 
   factory Qoute.fromJson(Map<String, dynamic> jsonData) {
     return Qoute(
-      content: jsonData["body"],
-      author: jsonData["author"],
+      content: jsonData["q"]??'',
+      author: jsonData["a"]??'',
     );
   }
 }

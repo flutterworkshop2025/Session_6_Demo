@@ -6,7 +6,7 @@ class QouteService {
   QouteService({required this.apiConsumer});
 
   Future<dynamic> loadQoutes() async {
-    final response = await apiConsumer.get("https://favqs.com/api/quotes");
+    final response = await apiConsumer.get("https://zenquotes.io/api/quotes");
     return response;
   }
 }

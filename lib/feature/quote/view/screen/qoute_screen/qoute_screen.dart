@@ -59,7 +59,7 @@ class _QouteScreenState extends State<QouteScreen> {
                                   ),
                                   const SizedBox(height: 10),
                                   Text(
-                                    "- ${qoute.author ?? "Unknown"}",
+                                    "- ${qoute.author}",
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500,

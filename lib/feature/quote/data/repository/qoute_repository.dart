@@ -9,7 +9,11 @@ class QouteRepository {
 
   Future<List<Qoute>> loadQoute() async {
     final response = await qouteService.loadQoutes();
-    List<Map<String, dynamic>> jsonQuotes = response["quotes"];
-    return jsonQuotes.map<Qoute>((qoute) => Qoute.fromJson(qoute)).toList();
+    List<Qoute> qoutes = response.map<Qoute>((qoute) {
+      Qoute q =Qoute.fromJson(qoute);
+      print('${q.content} — ${q.author}');
+  return q;
+    }).toList();
+    return qoutes;
   }
 }
